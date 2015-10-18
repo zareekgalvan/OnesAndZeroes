@@ -8,8 +8,36 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+using namespace std;
+
+//=======================================================================================================================
+int intCharRemaining(string strSequence)
+{
+    for (int intPosition = 1; intPosition < strSequence.length() + 1; intPosition++)
+    {
+        if (
+            (strSequence[intPosition] == '0' && strSequence[intPosition - 1] == '1') ||
+            (strSequence[intPosition] == '1' && strSequence[intPosition - 1] == '0')
+            )
+            
+        {
+            strSequence.erase(intPosition - 1, 2);
+            intPosition -= 2;
+        }
+        if (intPosition < 0)
+        {
+            intPosition = 0;
+        }
+    }
+    return (int)strSequence.length();
+}
+
+//=======================================================================================================================
+
+int main()
+{
+    int intLength;
+    string strSequence;
+    cin >> intLength >> strSequence;
+    cout<<intCharRemaining(strSequence)<<endl;
 }
